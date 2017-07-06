@@ -9,4 +9,4 @@ docker run --rm \
  -v ${WD}/aws_config:/root/.aws/config \
  -v ${WD}/aws_credentials:/root/.aws/credentials \
  -ti aqec2 \
- ansible-playbook -i /ansible/inventory/aws/ec2.py /ansible/${1}.yml
+ ansible-playbook -i /ansible/inventory/aws/ec2.py /ansible/${1}
