@@ -1,0 +1,51 @@
+---
+- name: Create EC2 VPC
+  ec2_vpc:
+    state: present
+    dns_support: yes
+    dns_hostnames: yes
+    cidr_block: "{{ cidr_class_b }}"
+    resource_tags:
+      env: "{{ cluster_id }}"
+      Name: "{{ cluster_id }}_vpc"
+    region: "{{ ec2_region }}"
+    subnets:
+    - cidr: "{{ cidr_class_c }}"
+      az: "{{ ec2_az }}"
+      resource_tags:
+        env: "{{ cluster_id }}"
+        Name: "{{ cluster_id }}_subnet"
+        parent_vpc: "{{ cluster_id }}_vpc"
+    internet_gateway: yes
+    wait: yes
+  register: aqec2_vpc
+
+- name: Set up subnet route tables
+  ec2_vpc_route_table:
+    vpc_id: "{{ aqec2_vpc.vpc_id }}"
+    region: "{{ ec2_region }}"
+    tags:
+      Name: "{{ cluster_id }}_routetable"
+      env: "{{ cluster_id }}"
+    subnets:
+      - "{{ aqec2_vpc.subnets.0.id }}"
+    routes:
+      - dest: 0.0.0.0/0
+        gateway_id: "{{ aqec2_vpc.igw_id }}"
+  register: aqec2_routetable
+
+- name: Create initial security group
+  ec2_group:
+    name: "{{ cluster_id }}_sg"
+    description: "{{ cluster_id }} security group"
+    region: "{{ ec2_region }}"
+    vpc_id: "{{ aqec2_vpc.vpc_id }}"
+    rules:
+      - proto: tcp
+        from_port: 22
+        to_port: 22
+        cidr_ip: 0.0.0.0/0
+    rules_egress:
+      - proto: all
+        cidr_ip: 0.0.0.0/0
+  register: aqec2_sg
