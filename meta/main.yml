@@ -1,7 +1,7 @@
 galaxy_info:
-  author: Jason Callaway <jason@jasoncallaway.com>
-  description: The Ansible Quick EC2 role uses my favorite Ansible EC2 design patterns to quickly spin up EC2 resources.
-  company: Red Hat
+  author: "Jason Callaway <jason@jasoncallaway.com>"
+  description: "The Ansible Quick EC2 role uses my favorite Ansible EC2 design patterns to quickly spin up EC2 resources."
+  company: "Red Hat"
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
@@ -14,7 +14,7 @@ galaxy_info:
   # - GPLv3
   # - Apache
   # - CC-BY
-  license: license (Apache License v2)
+  license: "Apache License version 2"
 
   min_ansible_version: 2.2
 
@@ -35,17 +35,17 @@ galaxy_info:
   # platforms:
   - name: Fedora
     versions:
-      - 23
-      - 24
-      - 25
+    - 23
+    - 24
+    - 25
   - name: RHEL
     version:
-      - 6
-      - 7
+    - 6
+    - 7
   - name: CentOS
     versions:
-      - 6
-      - 7
+    - 6
+    - 7
   #   - 25
   # - name: SomePlatform
   #   versions:
