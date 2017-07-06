@@ -15,7 +15,7 @@
 - name: Create EC2 instances
   include: create_instance.yml
   vars:
-    my_group_id: "{{ aqec2_sg.id }}"
+    my_group_id: "{{ aqec2_sg.group_id }}"
     my_env: "{{ cluster_id }}"
     my_vpc_subnet_id: "{{ aqec2_subnet_id }}"
     my_items: "{{ manifest['instances'] }}"
