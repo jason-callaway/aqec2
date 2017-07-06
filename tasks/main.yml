@@ -1,2 +1,4 @@
 ---
 # tasks file for aqec2
+- include: vpc.yml
+- include: instances.yml
