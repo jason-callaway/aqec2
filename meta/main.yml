@@ -38,14 +38,11 @@ galaxy_info:
     - 23
     - 24
     - 25
-  - name: RHEL
+  - name: EL
     version:
     - 6
     - 7
-  - name: centos
-    versions:
-    - 6
-    - 7
+
   #   - 25
   # - name: SomePlatform
   #   versions:
